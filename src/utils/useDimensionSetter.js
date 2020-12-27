@@ -6,6 +6,7 @@ const [ dimensions, setDimensions ] = useState([
     window.innerHeight
 ])
 
+// sets the width and height to window width and height
 useEffect(() => {
     const debouncedResizeHandle = debounce(() => {
         setDimensions([window.innerWidth, window.innerHeight])
@@ -15,7 +16,7 @@ useEffect(() => {
 }, [])
 return dimensions
 }
-
+// debounces the window resize
 function debounce(func, ms) {
     let timer; 
     return _ => {

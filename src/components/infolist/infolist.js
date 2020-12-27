@@ -8,12 +8,14 @@ function Infolist({displayData}) {
   const side = 'right'
   const [date, setDate] = useState()
 
+  // sets the date to just the year
   useEffect(() => {
     const dateParts = displayData.releaseDate.split('-', 1);
     const year = dateParts[0];
     setDate(year)
 }, [displayData])
 
+// displays the data returned from Audd and Spotify
   return (
     <div className='infoContainer'>
     {displayData.show ? (

@@ -5,6 +5,7 @@
 }
 
 /* unholy css to style input type="range" */
+/* taken from wesbos video tutorial " */
 
 input[type=range] {
     -webkit-appearance: none;
@@ -66,14 +67,15 @@ input[type=range] {
   input[type=range]:hover::-moz-range-track {
     background: #10418bef
   }
-  /*not working not sure why background-color' problem*/
+  /*not working not sure why background-color' problem
+  does work on mozilla though... */
   @keyframes fadeIn {
     from {
       background-color: #10418bef;
-      transform: scale(1)
+
     }
     to {
       background-color: #1c1f29;
-      transform: scale(1)
+
     }
   }

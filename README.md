@@ -1,3 +1,9 @@
+# description
+this project is a radio player which plays the munich based radio station 
+'radio 2day' - whilst a song is playing the user can check the song (much like shazam) the user can then add the song to their personal spotify account - the app will create and add to a playlist called 2day4life
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
