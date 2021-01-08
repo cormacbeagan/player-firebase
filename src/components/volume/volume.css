@@ -4,9 +4,6 @@
 
 }
 
-/* unholy css to style input type="range" */
-/* taken from wesbos video tutorial " */
-
 input[type=range] {
     -webkit-appearance: none;
     background: transparent;
@@ -23,8 +20,8 @@ input[type=range] {
     height: 8.4px;
     cursor: pointer;
     background-color:  #1c1f29;
-    animation-name: fadeIn; 
-    animation-duration: 3s;
+    -webkit-animation: fadeIn 3s; /* not working??!! */
+    animation: fadeIn 3s; 
     transition: background-color ease-out 800ms;
   }
   
@@ -40,19 +37,17 @@ input[type=range] {
   
   input[type=range]:hover::-webkit-slider-runnable-track {
     background-color: #10418bef;
+  }
 
-  }
-  input[type=range]:focus::-webkit-slider-runnable-track {
-    background-color: #10418bef;
-  }
 
   input[type=range]::-moz-range-track {
     width: 100%;
     height: 8.4px;
     cursor: pointer;
-    background: #1c1f29;
+    background-color: #1c1f29;
     border-radius: 1.3px;
     animation: fadeIn ease 3s;
+    transition: background-color ease-out 800ms;
   }
   
   input[type=range]::-moz-range-thumb {
@@ -65,17 +60,23 @@ input[type=range] {
   }
 
   input[type=range]:hover::-moz-range-track {
-    background: #10418bef
+    background-color: #10418bef
   }
-  /*not working not sure why background-color' problem
-  does work on mozilla though... */
+
   @keyframes fadeIn {
     from {
       background-color: #10418bef;
-
     }
     to {
       background-color: #1c1f29;
+    }
+  }
 
+  @-webkit-keyframes fadeIn {
+    from {
+      background-color: #10418bef;
+    }
+    to {
+      background-color: #1c1f29;
     }
   }

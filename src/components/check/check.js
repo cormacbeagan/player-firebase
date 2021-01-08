@@ -10,7 +10,7 @@ function Check({onClick, check}){
   return (
     <div className='divCheckStyle'>
         <a href='' 
-        className='check-btn check-btn-white check-btn-animated'
+        className='check-btn check-btn-white'
         onClick={handleClick} 
         className={check === 'CHECK' ? 'check-btn check-btn-white ' : 'check-btn check-btn-white-checking ' }
         >

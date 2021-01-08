@@ -15,11 +15,9 @@ function Image({data}) {
 
 
     return (
-
-            <div className='image-container'>
-              <img id='load' src={data.image} className='image' style={imgStyle} alt='Album Cover'/>
-            </div>
-
+        <div className='image-container'>
+          <img id='load' src={data.image} className='image' style={imgStyle} alt='Album Cover'/>
+        </div>
     );
 
   }
