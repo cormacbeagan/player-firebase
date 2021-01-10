@@ -20,6 +20,5 @@ function Check({onClick, check}){
     )
 }
 
-
-  export default Check
+export default Check
   

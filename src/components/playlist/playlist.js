@@ -2,7 +2,6 @@ import React from 'react';
 import './playlist.css';
 
 function Playlist({ onClick}) {
-
   const handleClick = (e) => {
     e.preventDefault()
     onClick()

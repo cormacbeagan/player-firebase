@@ -20,7 +20,7 @@ input[type=range] {
     height: 8.4px;
     cursor: pointer;
     background-color:  #1c1f29;
-    -webkit-animation: fadeIn 3s; /* not working??!! */
+    -webkit-animation: fadeIn 3s; /* not working on chrome??!! */
     animation: fadeIn 3s; 
     transition: background-color ease-out 800ms;
   }

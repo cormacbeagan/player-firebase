@@ -1,5 +1,5 @@
 
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 
 import Listen from './components/listen/listen';
 import Playlist from './components/playlist/playlist';
@@ -12,7 +12,7 @@ import Audd from './utils/audd';
 import TwoDay from './utils/twoday';
 import Spotify from './utils/spotify';
 import { useDimensionsSetter } from './utils/useDimensionSetter';
-import './app.css';
+import './app.css'; 
 
 const INITIAL_STATE = {
     artist: '',
@@ -43,6 +43,10 @@ function App() {
     const [ check, setCheck ] = useState('CHECK')
     const [ width, height ] = useDimensionsSetter()
 
+    useEffect(() => {
+      Spotify.getClientToken()
+    }, [])
+
     const handleStream = (audioFeed) => {
       setStream(audioFeed);
     }
@@ -69,11 +73,11 @@ function App() {
               dispatch(setReset({displayText: 'Sorry didn\'t catch that'}))
               return  
           }
-          // should add a functino which removes bracket content from the song title
-          // Song Title (remastered version)  confuses spotify
 
-          const searchData = await Spotify.search(`"${auddResult.title}" ${auddResult.artist}`)
-          // if spotify does not return any hits
+          const title = auddResult.title.replace(/ *\([^)]*\) */g, "")
+          const artist = auddResult.artist.replace(/ *\([^)]*\) */g, "")
+          console.table(artist, title, auddResult)
+          const searchData = await Spotify.search(`${title} ${artist}`)
           if(searchData.tracks.total === 0) {
               setCheck('CHECK')
               dispatch(setReset({displayText: 'Couldn\'t ping Spotify'}))

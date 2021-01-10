@@ -1,6 +1,6 @@
 import FirebaseFunc from './firebaseFunc';
 let accessToken;
-let clientToken;
+let clientToken; 
 const name = '2Day4Life'
 const redirectUri = 'https://radio-player-5a684.web.app/'
 //const redirectUri = 'http://localhost:3000';

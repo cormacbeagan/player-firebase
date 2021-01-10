@@ -95,6 +95,7 @@ const TwoDay = {
       source = null
     }
   },
+
   callBlob() {
       if(chunks.length <= 2) {
         return false

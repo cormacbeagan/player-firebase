@@ -12,7 +12,7 @@ function Listen({onLoad}) {
   useEffect(() => {
       const audioSet = audio.current;
       const loader = () => {
-        onLoad(audio.current);
+        onLoad(audio.current); 
         TwoDay.creatingBlob(audio.current)
       }
       audioSet.addEventListener('playing', loader)

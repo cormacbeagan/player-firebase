@@ -12,7 +12,7 @@ function Infolist({displayData}) {
     const dateParts = displayData.releaseDate.split('-', 1);
     const year = dateParts[0];
     setDate(year)
-}, [displayData])
+}, [displayData]) 
 
   return (
     <div className='infoContainer'>

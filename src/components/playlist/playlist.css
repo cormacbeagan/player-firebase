@@ -27,8 +27,7 @@
 .playlist-btn:active {
     transform: translateY(2px);
     box-shadow: 6px 2px 10px rgba(40, 85, 207, 0.226);
-    background-color: #0e4aa531;
-
+    background-color: #f744447e;
 }
 
 .playlist-btn-white {

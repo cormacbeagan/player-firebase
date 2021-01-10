@@ -16,7 +16,7 @@ const Audd = {
                         mode: 'cors',
                     })
             const data = await response.json()
-            //console.log(data)
+            console.log(data)
             if(data.result !== null && data.status !== 'error') {
                 const resultObject = {
                     artist: data.result.artist,

@@ -11,7 +11,7 @@ function Image({data}) {
     } else {
       setImgStyle({display: 'none'})
     }
-  }, [data.show])
+  }, [data.show]) 
 
 
     return (

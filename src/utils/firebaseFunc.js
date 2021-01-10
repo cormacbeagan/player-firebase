@@ -22,7 +22,7 @@ const FirebaseFunc = {
             return spotifyToken 
         } catch(err) {console.log(err)}    
     },
-    callSpotify() {
+    async callSpotify() {
         const spotifyKey = firebase.functions().httpsCallable('spotifyKey');
         return spotifyKey().then(data => {
             return data.data.id
