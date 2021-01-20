@@ -76,7 +76,6 @@ function App() {
 
           const title = auddResult.title.replace(/ *\([^)]*\) */g, "")
           const artist = auddResult.artist.replace(/ *\([^)]*\) */g, "")
-          console.table(artist, title, auddResult)
           const searchData = await Spotify.search(`${title} ${artist}`)
           if(searchData.tracks.total === 0) {
               setCheck('CHECK')
