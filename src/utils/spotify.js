@@ -2,15 +2,16 @@ import FirebaseFunc from './firebaseFunc';
 let accessToken;
 let clientToken; 
 const name = '2Day4Life'
-const redirectUri = 'https://radio-player-5a684.web.app/'
-//const redirectUri = 'http://localhost:3000';
+//const redirectUri = 'https://radio-player-5a684.web.app/'
+const redirectUri = 'http://localhost:3000';
+const spotifyKey = process.env.REACT_APP_SPOTIFY_ID
 
 const Spotify = {
     async getAccessToken() {
         if (accessToken){
             return accessToken
         } else {
-            const spotifyKey = await FirebaseFunc.callSpotify()
+            //const spotifyKey = await FirebaseFunc.callSpotify()
             let accessTokenMatch;
             let timeoutInMatch;
             let popup = 
