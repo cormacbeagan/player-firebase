@@ -1,6 +1,5 @@
 
-import React, { useState, useReducer, useEffect } from 'react';
-
+import { useState, useReducer, useEffect } from 'react';
 import Listen from './components/listen/listen';
 import Playlist from './components/playlist/playlist';
 import Display from './components/display/display';
@@ -53,15 +52,15 @@ function App() {
     const handleRecognise = async () => {
       setCheck('Checking')
       let spotifyResult
-
+      
       try {
-          dispatch(setReset({...INITIAL_STATE}))
-          const blobData = await TwoDay.callBlob()      
-          if(!blobData) {
-            setCheck('CHECK')
-            dispatch(setReset({displayText: 'Oops, try again!'}))
-            return
-          }
+        dispatch(setReset({...INITIAL_STATE}))
+        const blobData = await TwoDay.callBlob()    
+        if(!blobData) {
+          setCheck('CHECK')
+          dispatch(setReset({displayText: 'Oops, try again!'}))
+          return
+        }
           const auddResult = await Audd.callingApi(blobData) 
           if(auddResult.result === 'error'){
               reset()

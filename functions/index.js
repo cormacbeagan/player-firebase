@@ -1,11 +1,11 @@
 const functions = require('firebase-functions');
 const axios = require('axios')
 
-
+/*
 exports.auddKey = functions.https.onCall((data, context) => {    
         return {id: functions.config().audd.key}
     });
-
+*/
 exports.spotifyId = functions.https.onCall((data, contextt) => {
     const config = {
         method: 'post',
@@ -23,8 +23,9 @@ exports.spotifyId = functions.https.onCall((data, contextt) => {
     })
 
 });
+/*
 
 exports.spotifyKey = functions.https.onCall((data, context) => {    
     return {id: functions.config().spotify.key}
 });
-
+*/

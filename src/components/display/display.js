@@ -1,12 +1,11 @@
-import React from 'react';
-import './display.css';
+import './display.css'
 
-function Display({displayData}){
- return (
-    <div className='displayDiv'>
-        <text className='display' >{displayData}</text>
-    </div> 
-)
-};
+function Display({ displayData }) {
+    return (
+        <div className='displayDiv'>
+            <text className='display'>{displayData}</text>
+        </div>
+    )
+}
 
-export default Display;
+export default Display
