@@ -1,6 +1,16 @@
+import { useEffect } from 'react'
 import './playlist.css'
 
 function Playlist({ onClick }) {
+    const handleKeyUp = (e) => {
+        if (e.keyCode === 83) onClick()
+    }
+
+    useEffect(() => {
+        document.addEventListener('keyup', handleKeyUp)
+        return () => document.removeEventListener('keyup', handleKeyUp)
+    }, [])
+
     const handleClick = (e) => {
         e.preventDefault()
         onClick()
@@ -9,7 +19,7 @@ function Playlist({ onClick }) {
     return (
         <div className='divPlaylistStyle'>
             <a
-                href=''
+                href='#'
                 className='playlist-btn playlist-btn-white'
                 onClick={handleClick}
             >

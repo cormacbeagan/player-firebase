@@ -16,7 +16,7 @@ function Infolist({ displayData }) {
     return (
         <div className='infoContainer'>
             {displayData.show ? (
-                <div className='outer'>
+                <div className='outer' tabIndex='0'>
                     <div className='inner'>
                         <div className='imageStyle'>
                             {<Image data={displayData} />}
