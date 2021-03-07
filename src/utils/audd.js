@@ -1,12 +1,11 @@
-import FirebaseFunc from './firebaseFunc';
 const auddId = process.env.REACT_APP_AUDD_KEY
 
 const Audd = {
     async callingApi(audioBlob) {
         try {
-            //*const auddId = await FirebaseFunc.callAudd();
+            //const auddId = await FirebaseFunc.callAudd();
             const audioForm = new FormData();
-            audioForm.append('api_token', auddId.data.id)
+            audioForm.append('api_token', auddId)
             audioForm.append('file', audioBlob)
 
 
