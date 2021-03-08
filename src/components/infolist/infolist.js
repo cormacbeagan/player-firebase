@@ -41,10 +41,10 @@ function Infolist({ displayData }) {
                 />
                 <Info
                   key={5}
-                  heading={'Popularity/100'}
+                  heading={'Danceability'}
                   use
                   data
-                  text={displayData.popularity}
+                  text={`${displayData.popularity}%`}
                   side={side}
                 />
                 <Info

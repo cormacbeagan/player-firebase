@@ -62,24 +62,32 @@ const Spotify = {
         headers: { Authorization: `Bearer ${clientId}` },
       });
       const data = await response.json();
+      const featResp = await fetch(
+        `https://api.spotify.com/v1/audio-features/${id}`,
+        {
+          method: 'GET',
+          headers: { Authorization: `Bearer ${clientId}` },
+        }
+      );
+      const features = await featResp.json();
       console.log(
-        'Spotify release date: ',
-        data.album.release_date,
-        ', Precision: ',
-        data.album.release_date_precision
+        'Spotify Artist: ',
+        data.album.artists[0].name,
+        ', Spotify release date: ',
+        data.album.release_date
       );
       const spotifyData = {
         album: data.album.name,
         image: data.album.images[1].url,
         releaseDate: data.album.release_date,
-        popularity: data.popularity,
+        popularity: Math.floor(features.danceability * 100),
         uri: data.uri,
         spotifyId: data.id,
         show: true,
       };
       return spotifyData;
     } catch (err) {
-      /*console.log(err)*/
+      // console.log(err);
     }
   },
   async search(term) {
@@ -93,7 +101,6 @@ const Spotify = {
         }
       );
       const data = await response.json();
-      //console.log(data)
       return data;
     } catch (err) {
       /*console.log(err)*/
@@ -108,7 +115,7 @@ const Spotify = {
       const data = await response.json();
       return data.id;
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   },
   async createPlaylist(userId) {
