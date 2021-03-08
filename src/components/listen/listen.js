@@ -52,7 +52,7 @@ function Listen({ onAudioLoad }) {
       <audio
         className="audioStyle"
         ref={audio}
-        src=""
+        src="about"
         type="audio/webm"
         crossOrigin="anonymous"
         id="audio"

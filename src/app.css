@@ -7,3 +7,15 @@
   align-items: center;
   justify-content: center;
 }
+
+.heading {
+  color: white;
+  border: 0;
+  clip: rect(0000);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}

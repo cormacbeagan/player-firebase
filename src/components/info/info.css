@@ -13,8 +13,8 @@
   padding: 0;
   width: 120px;
   font-size: 16px;
-  font-weight: 500;
-  color: #f74444bb;
+  font-weight: 700;
+  color: #df1b1b;
   text-align: inherit;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -25,6 +25,6 @@
   color: rgba(235, 238, 234, 0.952);
   text-align: inherit;
   display: block;
-  font-weight: 300;
+  font-weight: 500;
   font-family: Arial, Helvetica, sans-serif;
 }

@@ -5,7 +5,7 @@ export default function Info(props) {
 
   return (
     <div className="divInfoStyle">
-      <h3 className="name">{heading}</h3>
+      <h2 className="name">{heading}</h2>
       <p className="info">{text}</p>
     </div>
   );
