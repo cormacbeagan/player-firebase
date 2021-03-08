@@ -8,9 +8,6 @@ function Volume({ audioElement }) {
 
   useEffect(() => {
     audio = document.querySelector('#audio');
-    audio.onPlay = function () {
-      audio.volume = loudness;
-    };
     document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
