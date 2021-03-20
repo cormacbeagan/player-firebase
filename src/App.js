@@ -87,7 +87,7 @@ function App() {
       setCheck('CHECK');
       dispatch(setReset({ ...auddResult, ...spotifyResult }));
     } catch (error) {
-      //console.log(error)
+      console.log(error);
       reset();
     }
   };

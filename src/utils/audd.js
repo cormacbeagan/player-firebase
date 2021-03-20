@@ -15,12 +15,13 @@ const Audd = {
         mode: 'cors',
       });
       const data = await response.json();
-      console.log(
-        'Audd Album: ',
-        data.result.album,
-        ', Audd Release date: ',
-        data.result.release_date
-      );
+      console.log(data);
+      // console.log(
+      //   'Audd Album: ',
+      //   data.result.album,
+      //   ', Audd Release date: ',
+      //   data.result.release_date
+      // );
       if (data.result !== null && data.status !== 'error') {
         const resultObject = {
           artist: data.result.artist,
@@ -32,7 +33,7 @@ const Audd = {
         return { success: false, result: data.status };
       }
     } catch (err) {
-      /*console.log(err)*/
+      console.log(err);
     }
   },
 };

@@ -70,12 +70,13 @@ const Spotify = {
         }
       );
       const features = await featResp.json();
-      console.log(
-        'Spotify Artist: ',
-        data.album.artists[0].name,
-        ', Spotify release date: ',
-        data.album.release_date
-      );
+      console.log({ features, data });
+      // console.log(
+      //   'Spotify Artist: ',
+      //   data.album.artists[0].name,
+      //   ', Spotify release date: ',
+      //   data.album.release_date
+      // );
       const spotifyData = {
         album: data.album.name,
         image: data.album.images[1].url,
@@ -87,7 +88,7 @@ const Spotify = {
       };
       return spotifyData;
     } catch (err) {
-      // console.log(err);
+      console.log(err);
     }
   },
   async search(term) {
@@ -103,7 +104,7 @@ const Spotify = {
       const data = await response.json();
       return data;
     } catch (err) {
-      /*console.log(err)*/
+      console.log(err);
     }
   },
   async setUserId() {
@@ -115,7 +116,7 @@ const Spotify = {
       const data = await response.json();
       return data.id;
     } catch (err) {
-      // console.log(err);
+      console.log(err);
     }
   },
   async createPlaylist(userId) {
@@ -131,7 +132,7 @@ const Spotify = {
       const data = await response.json();
       return data.id;
     } catch (err) {
-      /*console.log(err)*/
+      console.log(err);
     }
   },
   async checkPlaylist() {
@@ -161,7 +162,7 @@ const Spotify = {
       }
       return playlistId;
     } catch (err) {
-      /*console.log(err)*/
+      console.log(err);
     }
   },
   async addToPlaylist(playlistId, trackUri) {
@@ -184,7 +185,7 @@ const Spotify = {
       const data = await response.json();
       return data;
     } catch (err) {
-      /*console.log(err)*/
+      console.log(err);
     }
   },
   async checkPlaylistTracks(id, trackId, trackUri) {
@@ -211,7 +212,7 @@ const Spotify = {
       await Spotify.addToPlaylist(id, trackUri);
       return { displayText: 'Song added to Spotify', success: false };
     } catch (err) {
-      /*console.log(err)*/
+      console.log(err);
     }
   },
 };

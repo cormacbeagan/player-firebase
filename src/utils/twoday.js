@@ -10,6 +10,7 @@ let stream;
 
 const TwoDay = {
   creatingBlob(audio) {
+    console.log('creating');
     let firstChunks = [];
     let secondChunks = [];
     let timeSlice = 1000;
@@ -69,6 +70,7 @@ const TwoDay = {
         recordingOne.start(timeSlice);
       }
       if (counter === 22) {
+        console.log('running');
         counter = 4;
       }
       counter++;
@@ -91,6 +93,7 @@ const TwoDay = {
       ctx.close();
       source = null;
     }
+    console.log('tear down');
   },
 
   callBlob() {
