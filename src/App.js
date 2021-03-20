@@ -1,7 +1,5 @@
-import { useState, useReducer, useEffect } from 'react';
+import React, { useState, useReducer, useEffect, Suspense } from 'react';
 import Listen from './components/listen/listen';
-import Playlist from './components/playlist/playlist';
-import Display from './components/display/display';
 import Check from './components/check/check';
 import InfoList from './components/infolist/infolist';
 import Volume from './components/volume/volume';
@@ -11,6 +9,10 @@ import TwoDay from './utils/twoday';
 import Spotify from './utils/spotify';
 import { useDimensionsSetter } from './utils/useDimensionSetter';
 import './app.css';
+const Playlist = React.lazy(() => import('./components/playlist/playlist'));
+//import Playlist from './components/playlist/playlist';
+const Display = React.lazy(() => import('./components/display/display'));
+//import Display from './components/display/display';
 
 const INITIAL_STATE = {
   artist: '',
@@ -117,11 +119,13 @@ function App() {
       <Listen onAudioLoad={handleStream} />
       {stream && <Check check={check} onClick={handleRecognise} />}
       <InfoList show={state.show} displayData={state} />
-      {state.success ? (
-        <Playlist show={state.success} onClick={handlePlayist} />
-      ) : (
-        <Display displayData={state.displayText} />
-      )}
+      <Suspense fallback={<div>Loading...</div>}>
+        {state.success ? (
+          <Playlist show={state.success} onClick={handlePlayist} />
+        ) : (
+          <Display displayData={state.displayText} />
+        )}
+      </Suspense>
     </main>
   );
 }
