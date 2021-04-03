@@ -11,7 +11,6 @@ const Spotify = {
     if (accessToken) {
       return accessToken;
     } else {
-      //const spotifyKey = await FirebaseFunc.callSpotify()
       let accessTokenMatch;
       let timeoutInMatch;
       let popup = window.open(

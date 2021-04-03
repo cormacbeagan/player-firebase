@@ -11,8 +11,6 @@ function Listen({ onAudioLoad }) {
   const btn = useRef();
   const [width] = useDimensionsSetter();
 
-  console.log(width);
-
   useEffect(() => {
     const audioSet = audio.current;
     const loader = () => {
