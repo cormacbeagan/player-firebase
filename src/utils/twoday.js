@@ -1,14 +1,13 @@
-let chunks = [];
-let timer;
-let ctx;
-let source;
-let recordingOne;
-let recordingTwo;
-let counter = 0;
-let captureStreamTest = false;
-let stream;
-
 const TwoDay = {
+  chunks: [],
+  timer: {},
+  ctx: {},
+  source: {},
+  recordingOne: {},
+  recordingTwo: {},
+  counter: 0,
+  captureStreamTest: false,
+  stream: {},
   creatingBlob(audio) {
     console.log('creating');
     let firstChunks = [];
@@ -17,90 +16,90 @@ const TwoDay = {
 
     try {
       audio.captureStream();
-      captureStreamTest = true;
+      this.captureStreamTest = true;
     } catch (err) {}
-    if (!captureStreamTest) {
+    if (!this.captureStreamTest) {
       try {
         audio.mozCaptureStream();
-        captureStreamTest = 'moz';
+        this.captureStreamTest = 'moz';
       } catch (err) {
         console.log(err);
       }
     }
-    if (captureStreamTest === true) {
-      stream = audio.captureStream();
-    } else if (captureStreamTest === 'moz') {
+    if (this.captureStreamTest === true) {
+      this.stream = audio.captureStream();
+    } else if (this.captureStreamTest === 'moz') {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
-      ctx = new AudioContext();
-      source = ctx.createMediaElementSource(audio);
-      stream = audio.mozCaptureStream();
-      source.connect(ctx.destination);
+      this.ctx = new AudioContext();
+      this.source = this.ctx.createMediaElementSource(audio);
+      this.stream = audio.mozCaptureStream();
+      this.source.connect(this.ctx.destination);
     } else {
       alert('Audio capture not supported in this browser');
       return;
     }
-    recordingOne = new MediaRecorder(stream);
-    recordingOne.ondataavailable = function (event) {
+    this.recordingOne = new MediaRecorder(this.stream);
+    this.recordingOne.ondataavailable = function (event) {
       firstChunks.push(event.data);
     };
-    recordingOne.onstop = function () {
+    this.recordingOne.onstop = function () {
       firstChunks = [];
     };
-    recordingTwo = new MediaRecorder(stream);
-    recordingTwo.ondataavailable = function (event) {
+    this.recordingTwo = new MediaRecorder(this.stream);
+    this.recordingTwo.ondataavailable = function (event) {
       secondChunks.push(event.data);
     };
-    recordingTwo.onstop = function () {
+    this.recordingTwo.onstop = function () {
       secondChunks = [];
     };
     const recordingTimer = () => {
-      if (counter === 0) {
-        recordingOne.start(timeSlice);
-        recordingTwo.start(timeSlice);
-        chunks = firstChunks;
+      if (this.counter === 0) {
+        this.recordingOne.start(timeSlice);
+        this.recordingTwo.start(timeSlice);
+        this.chunks = firstChunks;
       }
-      if (counter === 5) {
-        chunks = firstChunks;
-        if (recordingTwo.state === 'recording') recordingTwo.stop();
-        recordingTwo.start(timeSlice);
+      if (this.counter === 5) {
+        this.chunks = firstChunks;
+        if (this.recordingTwo.state === 'recording') this.recordingTwo.stop();
+        this.recordingTwo.start(timeSlice);
       }
-      if (counter === 14) {
-        chunks = secondChunks;
-        if (recordingOne.state === 'recording') recordingOne.stop();
-        recordingOne.start(timeSlice);
+      if (this.counter === 14) {
+        this.chunks = secondChunks;
+        if (this.recordingOne.state === 'recording') this.recordingOne.stop();
+        this.recordingOne.start(timeSlice);
       }
-      if (counter === 22) {
+      if (this.counter === 22) {
         console.log('running');
-        counter = 4;
+        this.counter = 4;
       }
-      counter++;
+      this.counter++;
     };
-    timer = setInterval(recordingTimer, 1000);
+    this.timer = setInterval(recordingTimer, 1000);
   },
 
   tearDown() {
-    chunks = [];
-    counter = 0;
-    clearInterval(timer);
-    if (recordingOne?.state === 'recording') {
-      recordingOne.stop();
+    this.chunks = [];
+    this.counter = 0;
+    clearInterval(this.timer);
+    if (this.recordingOne?.state === 'recording') {
+      this.recordingOne.stop();
     }
-    if (recordingTwo?.state === 'recording') {
-      recordingTwo.stop();
+    if (this.recordingTwo?.state === 'recording') {
+      this.recordingTwo.stop();
     }
-    if (captureStreamTest === 'moz') {
-      source.disconnect(ctx.destination);
-      ctx.close();
-      source = null;
+    if (this.captureStreamTest === 'moz') {
+      this.source.disconnect(this.ctx.destination);
+      this.ctx.close();
+      this.source = null;
     }
     console.log('tear down');
   },
 
   callBlob() {
-    if (chunks.length <= 2) {
+    if (this.chunks.length <= 2) {
       return false;
     }
-    const audioBlob = new Blob(chunks, { type: 'audio/webm' });
+    const audioBlob = new Blob(this.chunks, { type: 'audio/webm' });
     return audioBlob;
   },
 };
