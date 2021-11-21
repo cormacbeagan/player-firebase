@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from "react";
-import TwoDay from "../../utils/twoday";
-import "./listen.css";
+import { useState, useRef, useEffect } from 'react';
+import TwoDay from '../../utils/twoday';
+import './listen.css';
 
 function Listen({ onAudioLoad, station }) {
-  const [listen, setListen] = useState("LISTEN");
+  const [listen, setListen] = useState('LISTEN');
   const [playing, setPlaying] = useState(false);
   const [stationUrl, setStationUrl] = useState(station.url);
   const audio = useRef(null);
@@ -15,9 +15,9 @@ function Listen({ onAudioLoad, station }) {
       onAudioLoad(audioSet);
       TwoDay.creatingBlob(audio.current);
     };
-    audioSet.addEventListener("playing", loader);
+    audioSet.addEventListener('playing', loader);
     return () => {
-      audioSet.removeEventListener("playing", loader);
+      audioSet.removeEventListener('playing', loader);
     };
   }, []);
 
@@ -36,9 +36,9 @@ function Listen({ onAudioLoad, station }) {
   };
 
   useEffect(() => {
-    document.addEventListener("keyup", handleKeyup);
+    document.addEventListener('keyup', handleKeyup);
     return () => {
-      document.removeEventListener("keyup", handleKeyup);
+      document.removeEventListener('keyup', handleKeyup);
     };
   }, []);
 
@@ -47,16 +47,16 @@ function Listen({ onAudioLoad, station }) {
   }, [playing]);
 
   const stopAudio = () => {
-    audio.current.src = "about";
+    audio.current.src = 'about';
     TwoDay.tearDown();
-    setListen("LISTEN");
+    setListen('LISTEN');
   };
 
   const playAudio = (station) => {
     audio.current.src = station ? station : stationUrl;
     audio.current.volume = 0.3;
     audio.current.play();
-    setListen("STOP");
+    setListen('STOP');
   };
 
   return (
@@ -76,9 +76,9 @@ function Listen({ onAudioLoad, station }) {
         className="listen-btn"
         onClick={() => setPlaying(!playing)}
         style={
-          listen === "STOP"
-            ? { backgroundColor: "#0e4aa531" }
-            : { backgroundColor: "#f744447e" }
+          listen === 'STOP'
+            ? { backgroundColor: '#0e4aa531' }
+            : { backgroundColor: '#f744447e' }
         }
       >
         {listen}
