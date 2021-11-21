@@ -9,10 +9,22 @@ import TwoDay from './utils/twoday';
 import Spotify from './utils/spotify';
 import { useDimensionsSetter } from './utils/useDimensionSetter';
 import './app.css';
+import Station from './components/station/station';
 const Playlist = React.lazy(() => import('./components/playlist/playlist'));
-//import Playlist from './components/playlist/playlist';
 const Display = React.lazy(() => import('./components/display/display'));
-//import Display from './components/display/display';
+
+const radioStations = {
+  twoDay: {
+    name: '2Day',
+    url: 'https://radio2day.ip-streaming.net/radio2day',
+    signal: 'FM 89.0',
+  },
+  schwarz: {
+    name: 'SWR',
+    url: 'https://stream.schwarzwaldradio.com/schwarzwaldradio',
+    signal: 'FM 87.5',
+  },
+};
 
 const INITIAL_STATE = {
   artist: '',
@@ -41,10 +53,15 @@ function App() {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const [check, setCheck] = useState('CHECK');
   const [width, height] = useDimensionsSetter();
+  const [station, setStation] = useState(radioStations.twoDay);
 
   useEffect(() => {
     Spotify.getClientToken();
   }, []);
+
+  const handleStation = (value) => {
+    setStation(radioStations[value]);
+  };
 
   const handleStream = (audioFeed) => {
     setStream(audioFeed);
@@ -116,9 +133,9 @@ function App() {
     >
       <h1 className="heading">Radio Player</h1>
       <Volume audioElement={stream} />
-      <Listen onAudioLoad={handleStream} />
+      <Listen onAudioLoad={handleStream} station={station} />
       {stream && <Check check={check} onClick={handleRecognise} />}
-      <InfoList show={state.show} displayData={state} />
+      <InfoList show={state.show} displayData={state} station={station} />
       <Suspense fallback={<div>Loading...</div>}>
         {state.success ? (
           <Playlist show={state.success} onClick={handlePlayist} />
@@ -126,6 +143,11 @@ function App() {
           <Display displayData={state.displayText} />
         )}
       </Suspense>
+      <Station
+        handleStation={handleStation}
+        station={station}
+        stations={radioStations}
+      />
     </main>
   );
 }
