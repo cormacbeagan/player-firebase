@@ -3,7 +3,7 @@ import Info from '../info/info';
 import './infolist.css';
 import Image from '../image/image';
 
-function Infolist({ displayData }) {
+function Infolist({ displayData, station }) {
   const side = 'right';
   const [date, setDate] = useState();
 
@@ -49,8 +49,8 @@ function Infolist({ displayData }) {
                 />
                 <Info
                   key={6}
-                  heading={'FM 89,0'}
-                  text="radio2day"
+                  heading={station.signal}
+                  text={station.name}
                   side={side}
                 />
               </div>
@@ -58,7 +58,7 @@ function Infolist({ displayData }) {
           </div>
         </div>
       ) : (
-        <Image data={displayData} />
+        <Image data={displayData} station={station} />
       )}
     </div>
   );
